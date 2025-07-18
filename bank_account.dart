@@ -97,18 +97,21 @@ Rounded Balane:${initialBalance.round()}
         accountName=stdin.readLineSync();
     }
     String? accountNumber;
-    while(accountNumber==null){
-        print("Enter Your Account Number: ");
-        accountNumber=stdin.readLineSync();
-        if(accountNumber==null||accountNumber.trim().isEmpty){
-          print("Account Number must be Entered");
-          continue;
-        }
-        if(accountNumber==null||accountNumber.length!=16){
-        print("Account Number must be 16 Number");
-        accountNumber=null;
-        }
-    }
+   while(accountNumber == null){
+  print("Enter Your Account Number: ");
+  accountNumber = stdin.readLineSync();
+
+  if(accountNumber == null || accountNumber.trim().isEmpty){
+    print("Account Number must be Entered");
+    continue;
+  }
+  RegExp regExp = RegExp(r'^\d{16}$');
+  if (!regExp.hasMatch(accountNumber)) {
+    print("Account Number must be 16 digits only.");
+    accountNumber = null;
+  }
+}
+
     String? accountType;
     while(true){
         print('''
